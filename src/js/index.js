@@ -1,15 +1,12 @@
 fetch("src/data/data.json")
     .then(e => e.json())
     .then(json => {
-        let title = document.createElement("h2"),
-            content = document.createElement("p"),
-            image = document.createElement("img");
+        let gameName = document.createElement("h1");
+            //image = document.createElement("img");
 
-        title.innerHTML = json.title;
-        content.innerHTML = json.content;
-        image.setAttribute("src", "./src/images/sql magic.jpg");
+        gameName.innerHTML = json.gameName;
+        //image.setAttribute("src", "./src/images/sql magic.jpg");
 
-        document.body.appendChild(title);
-        document.body.appendChild(content);
-        document.body.appendChild(image);
+        document.body.insertBefore(gameName, document.body.firstChild);
+        //document.body.appendChild(image);
     });

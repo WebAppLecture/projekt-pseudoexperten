@@ -1,9 +1,0 @@
-*{
-    box-sizing:border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.screen{
-    position: centered;
-    box-shadow: 0 0 1vh .2vh black inset;
-}

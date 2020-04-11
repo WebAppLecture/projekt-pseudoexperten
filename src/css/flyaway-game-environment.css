@@ -1,0 +1,23 @@
+/**{
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}*/
+
+body {
+    
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: lighter;
+    font-size: 2.5vh;
+
+    background: white;
+    text-align: center;
+}
+
+.screen {
+    /*position: relative;
+    left: 60vh;
+    bottom: 25vh;*/
+    box-shadow: 0 0 1vh .2vh black inset;
+    background-color: seagreen;
+}
+

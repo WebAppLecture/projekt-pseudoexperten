@@ -1,0 +1,105 @@
+/**{
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}*/
+
+body {
+    
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: lighter;
+    font-size: 2.5vh;
+
+    background: rgb(170, 170, 147);
+    /*background-image: url("flower_meadow.jpg");*/
+    overflow-x: hidden;
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-environment {
+    position: relative;
+    height: max-content;
+    width: fit-content;
+}
+
+.centered {
+    margin: 0 auto;
+}
+
+.screen {    
+    box-shadow: 0 0 1vh .2vh black inset;
+    background: linear-gradient(to right bottom, hsl(42, 82%, 53%), hsl(78, 82%, 51%));
+}
+
+.game-controls {
+    position: relative;
+    cursor: pointer;
+}
+
+.start {
+    text-transform: uppercase;
+    top: 0vh;
+    left: 0%;
+}
+
+.choose-name {
+    position: absolute;
+    top: 0vh;
+    left: 34.5%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 2vh;
+    background-color: rgb(170, 170, 147);
+    font-weight: lighter;
+}
+
+.restart {
+    position: absolute;
+    text-transform: uppercase;
+    top:0%;
+    left: 86%;
+}
+
+.enter-name {
+    position: absolute;
+    text-transform: uppercase;
+    top: 3vh;
+    left: 42.5%
+}
+
+.button {
+    width: 10vh;
+    height: 2.8vh;
+    border: 0.3vh solid black;
+    text-align: center;
+}
+
+.button:active {
+    border: 0.3vh solid blue;
+    box-shadow: -.0vh -.0vh 2vh -.2vh #21136b inset,
+    .0vh .0vh .7vh .2vh #21136b,
+    0 0 1.5vh -.5vh #21136b;
+}
+
+.button:hover {
+    border: 0.3vh solid blue;
+}
+
+
+.name-button {
+    width: 20vh;
+    height: 2.8vh;
+    border: 0.3vh solid black;
+    text-align: center;
+}
+
+.name-button:active {
+    border: 0.3vh solid blue;
+}
+
+.name-button:hover {
+    border: 0.3vh solid blue;
+}

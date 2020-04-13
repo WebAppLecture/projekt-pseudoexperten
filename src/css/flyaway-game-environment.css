@@ -35,19 +35,20 @@ h1 {
     background: linear-gradient(to right bottom, hsl(42, 82%, 53%), hsl(78, 82%, 51%));
 }
 
-.game-controls > * {
-    position: absolute;
+.game-controls {
+    position: relative;
     cursor: pointer;
 }
 
 .start {
     text-transform: uppercase;
-    top: 63vh;
-    left: 5%;
+    top: 0vh;
+    left: 0%;
 }
 
 .choose-name {
-    top: 63vh;
+    position: absolute;
+    top: 0vh;
     left: 34.5%;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 2vh;
@@ -56,14 +57,16 @@ h1 {
 }
 
 .restart {
+    position: absolute;
     text-transform: uppercase;
-    top: 63vh;
-    right: 5%
+    top:0%;
+    left: 86%;
 }
 
 .enter-name {
+    position: absolute;
     text-transform: uppercase;
-    top: 68vh;
+    top: 3vh;
     left: 42.5%
 }
 

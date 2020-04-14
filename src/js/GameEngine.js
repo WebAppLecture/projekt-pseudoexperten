@@ -38,6 +38,8 @@ export class GameEngine{
 
     restart() {
         delete this.game;
+        this.renderContext.clearRect(0,0,this.screen.width, this.screen.height);
+        this.showStartScreen();
         console.log("restart");
     }
 

@@ -10,7 +10,7 @@
     opacity: 0.85;
 
     position:absolute;
-    bottom: 0;
+    bottom: 20;
     left:5%;
     z-index: -1;
 
@@ -51,7 +51,7 @@
     opacity: 0.85;
 
     position:absolute;
-    bottom: 0;
+    bottom: 20;
     left: 18%;
     z-index: -1;
 
@@ -92,7 +92,7 @@
     opacity: 0.85;
 
     position:absolute;
-    bottom: 0;
+    bottom: 20;
     left: 75%;
     z-index: -1;
 
@@ -133,7 +133,7 @@
     opacity: 0.85;
 
     position:absolute;
-    bottom: 0;
+    bottom: 20;
     left: 88%;
     z-index: -1;
 

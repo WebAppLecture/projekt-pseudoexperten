@@ -39,6 +39,7 @@ export class FlyAway{
     }
 
     setupGameControls(){
+        console.log(this.buttonInteraction);
         document.addEventListener('keydown', function(event) {
             if(event.keyCode == 37) {
                 this.buttonInteraction["left"]();
@@ -58,12 +59,12 @@ export class FlyAway{
     /*bindControls(){
         this.inputBinding = {*/
     get buttonInteraction() {
-                return {
+        return {
             "left": () => this.player.left.bind(this.player),
             "right": () => this.player.right.bind(this.player),
             "down": () => this.player.down.bind(this.player),
-            "up": () => this.player.up.bind(this.player)
-        };
+            "up": () => this.player.up.bind(this.player),
+        }
     }
 }
 

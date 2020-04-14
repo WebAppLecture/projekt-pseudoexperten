@@ -5,16 +5,16 @@ export class FlyAway{
 
     constructor(){
         console.log("constructor FlyAway")
-        this.start
+        this.start();
     }
 
     start(){
         this.gameOver = false;
         this.points = 0;
         this.lives = 3;
-
-        let sizePlayer = 50;
-        this.player = new Ballon(300, 300, sizePlayer, sizePlayer, "#101010", 8);
+        let sizePlayer = 30;
+        this.player = new Ballon(300, 300, sizePlayer, sizePlayer, 8);
+        console.log(this.player);
     }
 
     update(ctx){
@@ -23,7 +23,7 @@ export class FlyAway{
 
 
     draw(ctx){
-        //this.player.draw(ctx);
+        this.player.draw(ctx);
     }
 
     tick(ctx) {

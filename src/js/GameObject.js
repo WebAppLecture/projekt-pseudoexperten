@@ -38,7 +38,8 @@ export class MovableGameObject extends GameObject {
 export class Ballon extends MovableGameObject {
 
     constructor(x, y, width, height, deltaV) {
-        super(x, y, width, height, "#6bd26b", 0, 0);
+       //hier kann Farbe geändert werden
+        super(x, y, width, height, "#909090", 0, 0);
         this.deltaV = deltaV;
     }
 

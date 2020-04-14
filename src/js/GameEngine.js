@@ -29,7 +29,6 @@ export class GameEngine{
 
     gameLoop() {  
         if(this.game !== undefined) {
-            console.log("game is undefined");
             requestAnimationFrame(this.gameLoop.bind(this));  
             this.renderContext.clearRect(0,0,this.screen.width, this.screen.height);
             this.game.tick(this.renderContext);
@@ -47,8 +46,6 @@ export class GameEngine{
     
     seputControlListener() {      
         document.querySelectorAll("*.button").forEach(control => {
-            console.log(control);
-            console.log(control.addEventListener("click", this.onButtonClicked.bind(this)));
             control.addEventListener("click", this.onButtonClicked.bind(this));
         });
     }
@@ -59,6 +56,7 @@ export class GameEngine{
 
     input(type, active) {
         if(active && this.buttonInteraction.hasOwnProperty(type)) {
+            console.log(type);
             this.buttonInteraction[type]();
         }
     }

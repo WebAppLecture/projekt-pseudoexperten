@@ -1,0 +1,36 @@
+:root{
+    /*General Colors*/
+    --black: black;
+    --blue: blue;
+    --green: green;
+    --light-green: rgb(0, 255, 13);
+    --white: white;
+    --blue: blue;
+    --red: red;
+    --pink: rgb(255, 0, 212);
+    --trans: transparent;
+
+    /*Background*/
+    --background-color-gradient: rgba(255,255,255,.1);
+    --background-color: #282828;
+
+    /*Headline*/
+    --color-headline: hsl(101, 50%, 47%);
+
+    /*Screen*/
+    --screen-color: hsl(115, 25%, 31%);
+
+    /*Button*/
+    --button-font-color: hsl(101, 50%, 47%);
+    --button-border-color: hsl(101, 34%, 35%);
+
+    /*Ballooon*/
+    --balloonx1-shadow: rgba(0, 0, 0, 0.07);
+    --balloonx1-bobble: hsl(215, 30%, 50%);
+    --balloonx2-shadow: rgba(0, 0, 0, 0.11);
+    --balloonx2-bobble: hsl(0, 51%, 35%);
+    --balloonx3-shadow: rgba(0, 0, 0, 0.07);
+    --balloonx3-bobble: hsl(113, 52%, 43%);
+    --balloonx4-shadow: rgba(0, 0, 0, 0.13);
+    --balloonx4-bobble: hsl(305, 67%, 20%);
+}

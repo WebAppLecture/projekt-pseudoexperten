@@ -4,7 +4,6 @@ import { Ballon } from "./GameObject.js";
 export class FlyAway{
 
     constructor(){
-        console.log("constructor FlyAway")
         this.start();
     }
 
@@ -12,8 +11,10 @@ export class FlyAway{
         this.gameOver = false;
         this.points = 0;
         this.lives = 3;
+        
+        //player
         let sizePlayer = 30;
-        this.player = new Ballon(300, 300, sizePlayer, sizePlayer, 8);
+        this.player = new Ballon(300, 300, sizePlayer, 8);
         console.log(this.player);
     }
 

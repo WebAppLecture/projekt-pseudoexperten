@@ -1,10 +1,13 @@
 export class GameObject{
 
-    constructor(x, y, width, height, color){
+    constructor(x, y, radius, color){
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height = height;
+        
+        this.radius = radius
+        //für Viereck:
+        /*this.width = width;
+        this.height = height;*/
         this.color = color
     }
 
@@ -13,18 +16,27 @@ export class GameObject{
         this.y += dy;
     }
 
-    draw(ctx) {
-        ctx.fillStyle = this.color;
+    draw(context) {
+        //Viereck
+        /*ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
         ctx.shadowBlur = 10;
-        ctx.shadowColor = this.color;
+        ctx.shadowColor = this.color;*/
+        //Kreis
+        context.arc(this.x,this.y, this.radius, 0, 2 *Math.PI, false);
+        context.fillStyle = this.color;
+        context.fill();
+        //Rand Kreis
+        context.lineWidth = 1.5;
+        context.strokeStyle = '#003300';
+        context.stroke();     
     }
 }
 
 export class MovableGameObject extends GameObject {
 
-    constructor(x, y, width, height, color, vx, vy) {
-        super(x, y, width, height, color);
+    constructor(x, y, radius, color, vx, vy) {
+        super(x, y, radius, color);
         this.vx = vx;
         this.vy = vy;
     }
@@ -37,9 +49,9 @@ export class MovableGameObject extends GameObject {
 
 export class Ballon extends MovableGameObject {
 
-    constructor(x, y, width, height, deltaV) {
-       //hier kann Farbe geändert werden
-        super(x, y, width, height, "#909090", 0, 0);
+    constructor(x, y, radius, deltaV) {
+       //hier kann Farbe geändert
+        super(x, y, radius, "#909090", 0, 0);
         this.deltaV = deltaV;
     }
 

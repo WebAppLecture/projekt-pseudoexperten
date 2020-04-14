@@ -1,3 +1,5 @@
+import { GameEngine } from "./GameEngine.js";
+
 fetch("src/data/data.json")
     .then(e => e.json())
     .then(json => {
@@ -10,3 +12,8 @@ fetch("src/data/data.json")
         document.body.insertBefore(gameName, document.body.firstChild);
         //document.body.appendChild(image);
     });
+
+
+window.gameEngine = new GameEngine(
+    document.querySelector(".game-controls"),
+    document.querySelector(".screen"));

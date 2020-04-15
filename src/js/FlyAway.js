@@ -51,15 +51,16 @@ export class FlyAway{
 
         document.addEventListener('keydown', event => {
             if(event.keyCode == 37) {
-                this.player.left.bind(this.player);
+                this.player.left();
             }
-            else if(event.keyCode == 39) {
-                this.player.right.bind(this.player);
-                console.log("right");
-            }else if(event.keyCode == 40){
-                this.player.down.bind(this.player);
-            }else if(event.keyCode == 38){
-                this.player.up.bind(this.player);
+            if(event.keyCode == 39) {
+                this.player.right();
+            }
+            if(event.keyCode == 40){
+                this.player.down();
+            }
+            if(event.keyCode == 38){
+                this.player.up();
             }
         });
         document.addEventListener("keyup", event =>{});

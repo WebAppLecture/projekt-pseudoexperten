@@ -56,19 +56,18 @@ export class Ballon extends MovableGameObject {
     }
 
     up() {  
-        this.x += deltaV;
         console.log("player up");
     }
 
-    down(x) {
+    down() {
         console.log("player down");
     }
 
-    left(x) {    
+    left() {    
         console.log("player left");
     }
 
-    right(x) {
+    right() {
         console.log("player right");
     }
     

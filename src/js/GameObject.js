@@ -57,22 +57,18 @@ export class Ballon extends MovableGameObject {
 
     up() { 
         super.move(0, -this.deltaV) 
-        console.log("player up");
     }
 
     down() {
         super.move(0, this.deltaV);
-        console.log("player down");
     }
 
     left() {   
         super.move(-this.deltaV, 0); 
-        console.log("player left");
     }
 
     right() {
         super.move(this.deltaV, 0);
-        console.log("player right");
     }
     
     borderCollision(ctx) {

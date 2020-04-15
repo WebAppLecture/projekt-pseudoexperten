@@ -5,6 +5,8 @@ export class FlyAway{
 
     constructor(){
         this.start();
+        this.setupGameControls();
+        //this.gameLoop();
     }
 
     start(){
@@ -18,8 +20,17 @@ export class FlyAway{
         console.log(this.player);
     }
 
+    /*gameLoop() {  
+        if(this.game !== undefined) {
+            requestAnimationFrame(this.gameLoop.bind(this));  
+            this.renderContext.clearRect(0,0,this.screen.width, this.screen.height);
+            this.game.tick(this.renderContext);
+        }
+    }*/
+
+
     update(ctx){
-        //this.player.update(ctx);
+        this.player.update(ctx);
     }
 
 
@@ -36,17 +47,22 @@ export class FlyAway{
         this.draw(ctx);
     }
 
-    bindControls(){
-        this.inputBinding = {
-            "left": this.player.left.bind(this.player),
-            "right": this.player.right.bind(this.player),
-            "down": this.player.down.bind(this.player),
-            "up": this.player.up.bind(this.player)
-        };
-    }
+    setupGameControls(){
 
-    static get NAME(){
-        return "Fly Away";
+        document.addEventListener('keydown', event => {
+            if(event.keyCode == 37) {
+                this.player.left.bind(this.player);
+            }
+            else if(event.keyCode == 39) {
+                this.player.right.bind(this.player);
+                console.log("right");
+            }else if(event.keyCode == 40){
+                this.player.down.bind(this.player);
+            }else if(event.keyCode == 38){
+                this.player.up.bind(this.player);
+            }
+        });
+        document.addEventListener("keyup", event =>{});
     }
 }
 

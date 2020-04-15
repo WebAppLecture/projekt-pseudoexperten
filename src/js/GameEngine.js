@@ -8,7 +8,7 @@ export class GameEngine{
         this.screen = screen;
 
         this.setupCanvas();
-        this.setupControls();
+        this.seputControlListener();
         this.showStartScreen();
     }
 
@@ -21,12 +21,7 @@ export class GameEngine{
         this.game = new FlyAway();
         this.gameLoop();
     }
-
-    setupCanvas() {
-        this.renderContext = this.screen.getContext('2d');
-        this.screen.classList.add("on");
-    }
-
+    
     gameLoop() {  
         if(this.game !== undefined) {
             requestAnimationFrame(this.gameLoop.bind(this));  
@@ -35,42 +30,24 @@ export class GameEngine{
         }
     }
 
+    setupCanvas() {
+        this.renderContext = this.screen.getContext('2d');
+        this.screen.classList.add("on");
+    }
+
+
     restart() {
         delete this.game;
         console.log("restart");
     }
 
-    setupControls() {
-        this.seputControlListener();
-    }
-    
-    seputControlListener() {      
-        document.querySelectorAll("*.button").forEach(control => {
-            control.addEventListener("click", this.onButtonClicked.bind(this));
-        });
-    }
-
-    onButtonClicked(event){
-        this.input(event.target.id, true);
-    }
-
-    input(type, active) {
-        if(active && this.buttonInteraction.hasOwnProperty(type)) {
-            console.log(type);
-            this.buttonInteraction[type]();
-        }
-    }
-
     savePlayersName(){
         console.log("savePlayersName");
     }
-
-    get buttonInteraction() {
-        return {
-            "restart": () => this.restart(),
-            "start": () => this.startGame(),
-            "enter": () => this.savePlayersName(),
-        }
-    }
     
+    seputControlListener() {  
+        document.getElementById("start").addEventListener("click", this.startGame.bind(this));
+        document.getElementById("restart").addEventListener("click", this.restart.bind(this));
+        document.getElementById("enter").addEventListener("click", this.savePlayersName.bind(this));
+    }    
 }

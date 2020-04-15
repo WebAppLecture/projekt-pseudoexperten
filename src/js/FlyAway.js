@@ -6,7 +6,7 @@ export class FlyAway{
     constructor(){
         this.start();
         this.setupGameControls();
-        //this.bindControls();
+        //this.gameLoop();
     }
 
     start(){
@@ -19,6 +19,15 @@ export class FlyAway{
         this.player = new Ballon(300, 300, sizePlayer, 8);
         console.log(this.player);
     }
+
+    /*gameLoop() {  
+        if(this.game !== undefined) {
+            requestAnimationFrame(this.gameLoop.bind(this));  
+            this.renderContext.clearRect(0,0,this.screen.width, this.screen.height);
+            this.game.tick(this.renderContext);
+        }
+    }*/
+
 
     update(ctx){
         this.player.update(ctx);
@@ -39,25 +48,23 @@ export class FlyAway{
     }
 
     setupGameControls(){
-        console.log(this.buttonInteraction);
-        document.addEventListener('keydown', function(event) {
+
+        document.addEventListener('keydown', event => {
             if(event.keyCode == 37) {
-                this.buttonInteraction["left"]();
+                this.player.left.bind(this.player);
             }
             else if(event.keyCode == 39) {
                 this.buttonInteraction["right"]();
+                console.log("right");
             }else if(event.keyCode == 40){
                 this.buttonInteraction["down"]();
             }else if(event.keyCode == 38){
                 this.buttonInteraction["up"]();
             }
         });
-        document.addEventListener("keyup", function(event){});
+        document.addEventListener("keyup", event =>{});
     }
    
-
-    /*bindControls(){
-        this.inputBinding = {*/
     get buttonInteraction() {
         return {
             "left": () => this.player.left.bind(this.player),

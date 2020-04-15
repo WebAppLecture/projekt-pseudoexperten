@@ -50,25 +50,26 @@ export class MovableGameObject extends GameObject {
 export class Ballon extends MovableGameObject {
 
     constructor(x, y, radius, deltaV) {
-       //hier kann Farbe geändert
+       //hier kann die Farbe geändert werden
         super(x, y, radius, "#909090", 0, 0);
         this.deltaV = deltaV;
     }
 
-    up(bool) {    
-        this.vy = bool - this.deltaV; 
+    up() {  
+        this.x += deltaV;
+        console.log("player up");
     }
 
-    down(bool) {
-        this.vy = bool + this.deltaV;
+    down(x) {
+        console.log("player down");
     }
 
-    left(bool) {    
-        this.vx = bool - this.deltaV; 
+    left(x) {    
+        console.log("player left");
     }
 
-    right(bool) {
-        this.vx = bool + this.speed;
+    right(x) {
+        console.log("player right");
     }
     
     borderCollision(ctx) {

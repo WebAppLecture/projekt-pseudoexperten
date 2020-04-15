@@ -3,8 +3,10 @@ import { Ballon } from "./GameObject.js";
 
 export class FlyAway{
 
-    constructor(){
+    constructor(ctx){
         this.start();
+        this.setupGameControls(ctx);
+        //this.gameLoop();
     }
 
     start(){
@@ -17,13 +19,29 @@ export class FlyAway{
         this.player = new Ballon(300, 300, sizePlayer, 8);
     }
 
+    /*gameLoop() {  
+        if(this.game !== undefined) {
+            requestAnimationFrame(this.gameLoop.bind(this));  
+            this.renderContext.clearRect(0,0,this.screen.width, this.screen.height);
+            this.game.tick(this.renderContext);
+        }
+    }*/
+
+
     update(ctx){
-        //this.player.update(ctx);
+        this.player.update(ctx);
     }
 
 
     draw(ctx){
         this.player.draw(ctx);
+        this.drawBoundingBox(ctx);
+    }
+
+    drawBoundingBox(ctx) {
+        ctx.strokeStyle = "#6bd26b";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(10, 10, ctx.canvas.width - 20, ctx.canvas.height - 20);
     }
 
     tick(ctx) {
@@ -35,18 +53,26 @@ export class FlyAway{
         this.draw(ctx);
     }
 
-    bindControls(){
-        this.inputBinding = {
-            "left": this.player.left.bind(this.player),
-            "right": this.player.right.bind(this.player),
-            "down": this.player.down.bind(this.player),
-            "up": this.player.up.bind(this.player)
-        };
+    setupGameControls(ctx){
+        document.addEventListener("keydown", this.onKeyInteraction.bind(this, true));
+        document.addEventListener("keyup", this.onKeyInteraction.bind(this, false));
     }
 
-    static get NAME(){
-        return "Fly Away";
+    onKeyInteraction(bool, event){
+        if(event.keyCode == 37){
+            this.player.left(bool);
+        }
+        if(event.keyCode == 39){
+            this.player.right(bool);
+        }
+        if(event.keyCode == 38){
+            this.player.up(bool);
+        }
+        if(event.keyCode == 40){
+            this.player.down(bool);
+        }
     }
+    
 }
 
 

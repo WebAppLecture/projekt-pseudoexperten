@@ -23,6 +23,7 @@ export class GameObject{
         ctx.shadowBlur = 10;
         ctx.shadowColor = this.color;*/
         //Kreis
+        context.beginPath();
         context.arc(this.x,this.y, this.radius, 0, 2 *Math.PI, false);
         context.fillStyle = this.color;
         context.fill();
@@ -50,28 +51,28 @@ export class MovableGameObject extends GameObject {
 export class Ballon extends MovableGameObject {
 
     constructor(x, y, radius, deltaV) {
-       //hier kann Farbe geändert
+       //hier kann die Farbe geändert werden
         super(x, y, radius, "#909090", 0, 0);
         this.deltaV = deltaV;
     }
 
-    up(bool) {    
-        this.vy = bool - this.deltaV; 
+    up(bool) {
+        this.vy = bool * -this.deltaV;
     }
 
     down(bool) {
-        this.vy = bool + this.deltaV;
+        this.vy = bool * this.deltaV;
     }
 
-    left(bool) {    
-        this.vx = bool - this.deltaV; 
+    left(bool) {
+        this.vx = bool * -this.deltaV;   
     }
 
     right(bool) {
-        this.vx = bool + this.speed;
+        this.vx = bool * this.deltaV;
     }
     
-    borderCollision(ctx) {
+    /*borderCollision(ctx) {
         let collisions =  [];
         if(this.y < 0) { // Top border
             this.y = 0;
@@ -103,6 +104,6 @@ export class Ballon extends MovableGameObject {
             UP: "UP",
             DOWN: "DOWN",
         }
-    }
+    }*/
 
 }

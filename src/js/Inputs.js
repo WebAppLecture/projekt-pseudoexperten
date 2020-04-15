@@ -13,4 +13,25 @@ export const Inputs = {
         "keys": [27],
         "text": "restart",
     },
+
+    "left": {
+        "keys": [37],
+        "text": "left",
+    },
+
+    "up": {
+        "keys": [38],
+        "text": "up",
+    },
+
+    "right": {
+        "keys": [39],
+        "text": "right",
+    },
+
+    "down": {
+        "keys":[40],
+        "text": "down",
+    },
+
 };

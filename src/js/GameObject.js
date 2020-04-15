@@ -23,6 +23,7 @@ export class GameObject{
         ctx.shadowBlur = 10;
         ctx.shadowColor = this.color;*/
         //Kreis
+        context.beginPath();
         context.arc(this.x,this.y, this.radius, 0, 2 *Math.PI, false);
         context.fillStyle = this.color;
         context.fill();
@@ -56,7 +57,7 @@ export class Ballon extends MovableGameObject {
     }
 
     up() {
-        super.move(0, -this.deltaV) 
+        super.move(0, -this.deltaV); 
     }
 
     down() {

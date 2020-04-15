@@ -14,19 +14,8 @@ export class GameEngine{
 
     showStartScreen(){
         let element = document.getElementById('screen');
- 
-        if(element.getContext) {
-          let context = element.getContext('2d'),
-          text = 'Don’t worry, don’t cry, drink vodka and fly.';
-          context.clearRect(0, 0, element.width, element.height);
-          context.fillStyle = 'black';
-          context.strokeStyle = 'black';
-          context.font = '30px Arial';
-          context.textAlign = 'center';
-          context.textBaseline = 'middle';
-          context.fillText(text, element.width / 2, element.height / 2);
-          context.strokeText(text, element.width / 2, element.height / 2);
-        }
+        let text = 'Don’t worry, don’t cry, drink vodka and fly.';
+        this.showTextOnScreen(element, text);
     }
 
     startGame(){
@@ -34,7 +23,7 @@ export class GameEngine{
         this.gameLoop();
     }
     
-    gameLoop() {  
+    gameLoop() {
         if(this.game !== undefined) {
             requestAnimationFrame(this.gameLoop.bind(this));  
             this.renderContext.clearRect(0,0,this.screen.width, this.screen.height);
@@ -54,7 +43,25 @@ export class GameEngine{
     }
       
     savePlayersName(){
-        console.log("savePlayersName");
+        this.msg = document.getElementById("name").value;
+        
+        let element = document.getElementById('screen');
+        let text = "Hallo " + this.msg + ", lass uns beginnen!";
+        this.showTextOnScreen(element, text);
+    }
+
+    showTextOnScreen(element, text){
+        if(element.getContext) {
+            let context = element.getContext('2d');
+            context.clearRect(0, 0, element.width, element.height);
+            context.fillStyle = 'black';
+            context.strokeStyle = 'black';
+            context.font = '30px Arial';
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillText(text, element.width / 2, element.height / 2);
+            context.strokeText(text, element.width / 2, element.height / 2);
+        }
     }
     
     seputControlListener() {  

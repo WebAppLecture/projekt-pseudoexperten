@@ -49,29 +49,30 @@ export class FlyAway{
             this.gameOverScreen(ctx);
             return;
         }
-        //this.update(ctx);
+        this.update(ctx);
         this.draw(ctx);
     }
 
     setupGameControls(ctx){
-        let playerRadius = this.player.radius;
-        document.addEventListener('keydown', event => {
-            if(event.keyCode == 37 && this.player.x > (20+playerRadius)) {
-                this.player.left();
-            }
-            if(event.keyCode == 39 && this.player.x < (ctx.canvas.width-20-playerRadius)) {
-                this.player.right();
-            }
-            if(event.keyCode == 40 && this.player.y < (ctx.canvas.height-20-playerRadius)){
-                this.player.down();
-            }
-            if(event.keyCode == 38 && this.player.y > (20+playerRadius)){
-                this.player.up();
-            }
-        });
-        document.addEventListener("keyup", event =>{
-        });
+        document.addEventListener("keydown", this.onKeyInteraction.bind(this, true));
+        document.addEventListener("keyup", this.onKeyInteraction.bind(this, false));
     }
+
+    onKeyInteraction(bool, event){
+        if(event.keyCode == 37){
+            this.player.left(bool);
+        }
+        if(event.keyCode == 39){
+            this.player.right(bool);
+        }
+        if(event.keyCode == 38){
+            this.player.up(bool);
+        }
+        if(event.keyCode == 40){
+            this.player.down(bool);
+        }
+    }
+    
 }
 
 

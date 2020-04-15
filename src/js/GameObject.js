@@ -56,20 +56,20 @@ export class Ballon extends MovableGameObject {
         this.deltaV = deltaV;
     }
 
-    up() {
-        super.move(0, -this.deltaV); 
+    up(bool) {
+        this.vy = bool * -this.deltaV;
     }
 
-    down() {
-        super.move(0, this.deltaV);
+    down(bool) {
+        this.vy = bool * this.deltaV;
     }
 
-    left() {   
-        super.move(-this.deltaV, 0); 
+    left(bool) {
+        this.vx = bool * -this.deltaV;   
     }
 
-    right() {
-        super.move(this.deltaV, 0);
+    right(bool) {
+        this.vx = bool * this.deltaV;
     }
     
     /*borderCollision(ctx) {

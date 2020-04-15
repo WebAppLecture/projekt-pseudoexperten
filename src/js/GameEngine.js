@@ -18,7 +18,6 @@ export class GameEngine{
         if(element.getContext) {
           let context = element.getContext('2d'),
           text = 'Don’t worry, don’t cry, drink vodka and fly.';
-     
           context.clearRect(0, 0, element.width, element.height);
           context.fillStyle = 'black';
           context.strokeStyle = 'black';
@@ -31,7 +30,6 @@ export class GameEngine{
     }
 
     startGame(){
-        console.log("start");
         this.game = new FlyAway(this.renderContext);
         this.gameLoop();
     }

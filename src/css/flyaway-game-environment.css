@@ -1,16 +1,18 @@
-/**{
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}*/
-
 body {
     
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: lighter;
     font-size: 2.5vh;
 
-    background: rgb(170, 170, 147);
-    /*background-image: url("flower_meadow.jpg");*/
+    /*Inspired by https://leaverou.github.io/css3patterns/ */
+    background:
+        radial-gradient(var(--black) 15%, transparent 16%) 0 0,
+        radial-gradient(var(--black) 15%, transparent 16%) 8px 8px,
+        radial-gradient(var(--background-color-gradient) 15%, transparent 20%) 0 1px,
+        radial-gradient(var(--background-color-gradient) 15%, transparent 20%) 8px 9px;
+    background-color: var(--background-color);
+    background-size:16px 16px;
+
     overflow-x: hidden;
 }
 
@@ -18,6 +20,8 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 6vh;
+    color: var(--color-headline);
 }
 
 .game-environment {
@@ -31,19 +35,20 @@ h1 {
 }
 
 .screen {    
-    box-shadow: 0 0 1vh .2vh black inset;
-    background: linear-gradient(to right bottom, hsl(42, 82%, 53%), hsl(78, 82%, 51%));
+    box-shadow: 0 0 1.4vh .2vh var(--black) inset;
+    background: var(--screen-color);
 }
 
 .game-controls {
     position: relative;
     cursor: pointer;
+    top: 3vh;
 }
 
 .start {
     text-transform: uppercase;
-    top: 0vh;
     left: 0%;
+    color: var(--button-font-color);
 }
 
 .choose-name {
@@ -52,54 +57,61 @@ h1 {
     left: 34.5%;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 2vh;
-    background-color: rgb(170, 170, 147);
     font-weight: lighter;
+    color: var(--button-font-color);
 }
 
 .restart {
     position: absolute;
     text-transform: uppercase;
-    top:0%;
-    left: 86%;
+    top: 0vh;
+    left: 82.8%;
+    color: var(--button-font-color);
 }
 
 .enter-name {
     position: absolute;
     text-transform: uppercase;
-    top: 3vh;
-    left: 42.5%
+    top: 6vh;
+    left: 42.5%;
+    color: var(--button-font-color);
 }
 
 .button {
     width: 10vh;
     height: 2.8vh;
-    border: 0.3vh solid black;
+    border: 0.3vh solid var(--button-border-color);
     text-align: center;
 }
 
 .button:active {
-    border: 0.3vh solid blue;
-    box-shadow: -.0vh -.0vh 2vh -.2vh #21136b inset,
-    .0vh .0vh .7vh .2vh #21136b,
-    0 0 1.5vh -.5vh #21136b;
+    border: 0.3vh solid var(--button-border-color);
+    box-shadow: -.0vh -.0vh 0vh -.2vh var(--button-border-color) inset,
+    .0vh .0vh .3vh .2vh var(--button-border-color),
+    0 0 1.5vh -.3vh var(--button-border-color);
 }
 
 .button:hover {
-    border: 0.3vh solid blue;
+    border: 0.3vh solid var(--button-border-color);
 }
 
 
 .name-button {
     width: 20vh;
-    height: 2.8vh;
-    border: 0.3vh solid black;
+    height: 4vh;
+    border: 0.3vh solid var(--button-border-color);
     text-align: center;
+    background-color: var(--trans);
+}
+
+::placeholder{
+    color: var(--button-font-color);
 }
 
 .name-button:active {
-    border: 0.3vh solid blue;
+    border: 0.3vh solid var(--button-border-color);
 }
 
 .name-button:hover {
-    border: 0.3vh solid blue;
+    border: 0.3vh solid var(--button-border-color);
 }

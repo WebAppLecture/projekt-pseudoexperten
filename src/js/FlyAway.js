@@ -15,7 +15,6 @@ export class FlyAway{
         //player
         let sizePlayer = 30;
         this.player = new Ballon(300, 300, sizePlayer, 8);
-        console.log(this.player);
     }
 
     update(ctx){

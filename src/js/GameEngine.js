@@ -18,7 +18,6 @@ export class GameEngine{
         if(element.getContext) {
           let context = element.getContext('2d'),
           text = 'Don’t worry, don’t cry, drink vodka and fly.';
-     
           context.clearRect(0, 0, element.width, element.height);
           context.fillStyle = 'black';
           context.strokeStyle = 'black';
@@ -31,7 +30,6 @@ export class GameEngine{
     }
 
     startGame(){
-        console.log("start");
         this.game = new FlyAway();
         this.gameLoop();
     }
@@ -43,7 +41,6 @@ export class GameEngine{
 
     gameLoop() {  
         if(this.game !== undefined) {
-            console.log("game is undefined");
             requestAnimationFrame(this.gameLoop.bind(this));  
             this.renderContext.clearRect(0,0,this.screen.width, this.screen.height);
             this.game.tick(this.renderContext);
@@ -54,7 +51,6 @@ export class GameEngine{
         delete this.game;
         this.renderContext.clearRect(0,0,this.screen.width, this.screen.height);
         this.showStartScreen();
-        console.log("restart");
     }
 
     setupControls() {
@@ -63,8 +59,6 @@ export class GameEngine{
     
     seputControlListener() {      
         document.querySelectorAll("*.button").forEach(control => {
-            console.log(control);
-            console.log(control.addEventListener("click", this.onButtonClicked.bind(this)));
             control.addEventListener("click", this.onButtonClicked.bind(this));
         });
     }

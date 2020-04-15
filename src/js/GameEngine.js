@@ -13,7 +13,21 @@ export class GameEngine{
     }
 
     showStartScreen(){
-        //Wollen wir einen StartScreen?
+        let element = document.getElementById('screen');
+ 
+        if(element.getContext) {
+          let context = element.getContext('2d'),
+          text = 'Don’t worry, don’t cry, drink vodka and fly.';
+     
+          context.clearRect(0, 0, element.width, element.height);
+          context.fillStyle = 'black';
+          context.strokeStyle = 'black';
+          context.font = '30px Arial';
+          context.textAlign = 'center';
+          context.textBaseline = 'middle';
+          context.fillText(text, element.width / 2, element.height / 2);
+          context.strokeText(text, element.width / 2, element.height / 2);
+        }
     }
 
     startGame(){
@@ -34,13 +48,13 @@ export class GameEngine{
         this.renderContext = this.screen.getContext('2d');
         this.screen.classList.add("on");
     }
-
-
+  
     restart() {
         delete this.game;
-        console.log("restart");
+        this.renderContext.clearRect(0,0,this.screen.width, this.screen.height);
+        this.showStartScreen();
     }
-
+      
     savePlayersName(){
         console.log("savePlayersName");
     }

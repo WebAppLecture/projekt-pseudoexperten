@@ -32,7 +32,7 @@ export class GameEngine{
 
     startGame(){
         console.log("start");
-        this.game = new FlyAway();
+        this.game = new FlyAway(this.renderContext);
         this.gameLoop();
     }
     

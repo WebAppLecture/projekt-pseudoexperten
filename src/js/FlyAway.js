@@ -54,24 +54,15 @@ export class FlyAway{
                 this.player.left.bind(this.player);
             }
             else if(event.keyCode == 39) {
-                this.buttonInteraction["right"]();
+                this.player.right.bind(this.player);
                 console.log("right");
             }else if(event.keyCode == 40){
-                this.buttonInteraction["down"]();
+                this.player.down.bind(this.player);
             }else if(event.keyCode == 38){
-                this.buttonInteraction["up"]();
+                this.player.up.bind(this.player);
             }
         });
         document.addEventListener("keyup", event =>{});
-    }
-   
-    get buttonInteraction() {
-        return {
-            "left": () => this.player.left.bind(this.player),
-            "right": () => this.player.right.bind(this.player),
-            "down": () => this.player.down.bind(this.player),
-            "up": () => this.player.up.bind(this.player),
-        }
     }
 }
 

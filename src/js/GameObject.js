@@ -48,6 +48,25 @@ export class MovableGameObject extends GameObject {
     }
 }
 
+//brauchen wir eventuell fürs Spielfeld
+/*export class StrokedObject extends GameObject {
+
+    constructor(x, y, width, height, color, lineWidth) {
+        super(x, y, width, height, color);
+        this.lineWidth = lineWidth;
+    }
+
+    draw(ctx) {
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = this.lineWidth;
+        ctx.strokeRect(
+            this.x + this.lineWidth/2, 
+            this.y + this.lineWidth/2, 
+            this.width - this.lineWidth, 
+            this.height - this.lineWidth);
+    }
+}*/
+
 export class Ballon extends MovableGameObject {
 
     constructor(x, y, radius, deltaV) {
@@ -70,6 +89,26 @@ export class Ballon extends MovableGameObject {
 
     right(bool) {
         this.vx = bool * this.deltaV;
+    }
+
+    update(ctx) {
+        if(this.vy === 0 && this.vx === 0) {
+            //return; 
+        }
+        //keeps player inside the box
+        if(this.y < 40) { //up
+            this.y = 40;
+        } 
+        if(this.y + this.radius + 10 > ctx.canvas.height) { //down
+            this.y = ctx.canvas.height - this.radius - 10;
+        }
+        if(this.x < 40) { //left
+            this.x = 40;
+        } 
+        if(this.x + this. radius + 10 > ctx.canvas.width) {//right
+            this.x = ctx.canvas.width - this.radius - 10;
+        }
+        super.update();
     }
     
     /*borderCollision(ctx) {

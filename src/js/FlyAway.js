@@ -17,7 +17,6 @@ export class FlyAway{
         //player
         let sizePlayer = 30;
         this.player = new Ballon(300, 300, sizePlayer, 8);
-        console.log(this.player);
     }
 
     /*gameLoop() {  
@@ -36,7 +35,7 @@ export class FlyAway{
 
     draw(ctx){
         this.player.draw(ctx);
-        this.drawBoundingBox(ctx)
+        this.drawBoundingBox(ctx);
     }
 
     drawBoundingBox(ctx) {
@@ -50,7 +49,7 @@ export class FlyAway{
             this.gameOverScreen(ctx);
             return;
         }
-        this.update(ctx);
+        //this.update(ctx);
         this.draw(ctx);
     }
 
@@ -70,7 +69,8 @@ export class FlyAway{
                 this.player.up();
             }
         });
-        document.addEventListener("keyup", event =>{});
+        document.addEventListener("keyup", event =>{
+        });
     }
 }
 

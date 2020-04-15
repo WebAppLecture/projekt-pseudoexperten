@@ -55,7 +55,7 @@ export class Ballon extends MovableGameObject {
         this.deltaV = deltaV;
     }
 
-    up() { 
+    up() {
         super.move(0, -this.deltaV) 
     }
 
@@ -71,7 +71,7 @@ export class Ballon extends MovableGameObject {
         super.move(this.deltaV, 0);
     }
     
-    borderCollision(ctx) {
+    /*borderCollision(ctx) {
         let collisions =  [];
         if(this.y < 0) { // Top border
             this.y = 0;
@@ -103,6 +103,6 @@ export class Ballon extends MovableGameObject {
             UP: "UP",
             DOWN: "DOWN",
         }
-    }
+    }*/
 
 }

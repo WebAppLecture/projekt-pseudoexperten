@@ -12,10 +12,10 @@ export class FlyAway{
         this.ticksToNextStone = 400;
 
         //enemies 1: destroys the ballon
-        this.enemiesOne = [];
+        this.arrayOfEnemiesOne = [];
 
         //enemies 2: ballon grows 
-        this.enemiesTwo =[];
+        this.arrayOfEnemiesTwo =[];
 
     }
 
@@ -39,9 +39,11 @@ export class FlyAway{
 
     tick(ctx) {
         if(this.gameOver) {
-            this.gameOverScreen(ctx);
+            // TODO: gameOverScreen
+            //this.gameOverScreen(ctx);
             return;
         }
+        this.checkCollisionOfEnemies(ctx);
         this.update(ctx);
         this.draw(ctx);
     }
@@ -51,12 +53,12 @@ export class FlyAway{
         this.updateEnemies(ctx);
     }
 
-
     draw(ctx){
+        this.createEnemies(ctx);
         this.player.draw(ctx);
         this.drawBoundingBox(ctx);
-        this.enemiesOne.forEach(enemie => enemie.draw(ctx));
-        this.enemiesTwo.forEach(enemie => enemie.draw(ctx));
+        this.arrayOfEnemiesOne.forEach(enemie => enemie.draw(ctx));
+        this.arrayOfEnemiesTwo.forEach(enemie => enemie.draw(ctx));
     }
 
     drawBoundingBox(ctx) {
@@ -86,11 +88,26 @@ export class FlyAway{
         }
     }
 
-    createEnemies(ctx, enemieArray, color){
+
+    /*       ENEMIES           */
+    createEnemies(ctx){
+        if(this.ticksToNextStone == 200){
+            this.createDifferentEnemies(ctx, this.arrayOfEnemiesOne, "#B22222");
+        } else if (this.ticksToNextStone == 400) {
+            this.createDifferentEnemies(ctx, this.arrayOfEnemiesTwo, "#200000");
+        } 
+
+        this.ticksToNextStone--;
+        if(this.ticksToNextStone == 0){
+            this.ticksToNextStone = 400;
+        }    
+    }
+
+    createDifferentEnemies(ctx, arrayOfEnemies, color){
         let radius = 10;
         let varsToCreateEnemie = this.randomPosition(radius, ctx);
         
-        enemieArray.push(new MovableGameObject(varsToCreateEnemie[0], varsToCreateEnemie[1], radius, color, 
+        arrayOfEnemies.push(new MovableGameObject(varsToCreateEnemie[0], varsToCreateEnemie[1], radius, color, 
             varsToCreateEnemie[2], varsToCreateEnemie[3]));
     }
 
@@ -108,35 +125,41 @@ export class FlyAway{
     }
 
     updateEnemies(ctx){ 
-        //destroy enemies outside of canvas
-        this.destroyEnemies(ctx, this.enemiesOne);
-        this.destroyEnemies(ctx,this.enemiesTwo);
-
-        this.enemiesOne.forEach(enemie => enemie.update(ctx));
-        this.enemiesTwo.forEach(enemie => enemie.update(ctx));
-        
-        //TODO destroy on collision with canvas
-
-        if(this.ticksToNextStone == 200){
-            this.createEnemies(ctx, this.enemiesOne, "#B22222");
-        } else if (this.ticksToNextStone == 400) {
-            this.createEnemies(ctx, this.enemiesTwo, "#200000");
-        }
-
-
-        this.ticksToNextStone--;
-        if(this.ticksToNextStone == 0){
-            this.ticksToNextStone = 400;
-        }
-        
+        this.arrayOfEnemiesOne.forEach(enemie => enemie.update(ctx));
+        this.arrayOfEnemiesTwo.forEach(enemie => enemie.update(ctx));
     }
 
-    destroyEnemies(ctx, enemiesArray){
-        for(let i = enemiesArray.length; i--;){
-            if(enemiesArray[i].y >= ctx.canvas.height || enemiesArray[i].x >= ctx.canvas.width){
-                enemiesArray.splice(i, 1);
+    checkCollisionOfEnemies(ctx){
+        this.checkCollisionForDifferentEnemieTypes(ctx, this.arrayOfEnemiesOne, "grow");
+        this.checkCollisionForDifferentEnemieTypes(ctx,this.arrayOfEnemiesTwo, "gameOver");
+    }
+
+    checkCollisionForDifferentEnemieTypes(ctx, arrayOfEnemies, stringForActionOnCollision){
+        for(let i = arrayOfEnemies.length; i--;){
+            if(this.collisionWithCanvas(ctx, arrayOfEnemies[i])){
+                arrayOfEnemies.splice(i, 1);
+            }
+            if(this.collisionWithPlayer(arrayOfEnemies[i])){
+                arrayOfEnemies.splice(i, 1);
+                this.actionOnCollision(stringForActionOnCollision);
             }
         }
+    }
+
+    actionOnCollision(stringForActionOnCollision){
+        if(stringForActionOnCollision == "grow"){
+            this.player.resizePlayer();
+        } else if (stringForActionOnCollision == "gameOver"){
+            this.gameOver = true;
+        }
+    }
+
+    collisionWithPlayer(enemie){
+        return (this.player.collision(enemie.x, enemie.y, enemie.radius));
+    }
+
+    collisionWithCanvas(ctx, enemie){
+        return (enemie.y >= ctx.canvas.height || enemie.x >= ctx.canvas.width);
     }
     
 }

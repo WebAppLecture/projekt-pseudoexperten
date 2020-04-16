@@ -2,13 +2,9 @@ export class GameObject{
 
     constructor(x, y, radius, color){
         this.x = x;
-        this.y = y;
-        
-        this.radius = radius
-        //für Viereck:
-        /*this.width = width;
-        this.height = height;*/
-        this.color = color
+        this.y = y;  
+        this.radius = radius;
+        this.color = color;
     }
 
     move(dx, dy) {
@@ -17,11 +13,6 @@ export class GameObject{
     }
 
     draw(context) {
-        //Viereck
-        /*ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = this.color;*/
         //Kreis
         context.beginPath();
         context.arc(this.x,this.y, this.radius, 0, 2 *Math.PI, false);
@@ -33,6 +24,8 @@ export class GameObject{
         context.stroke();     
     }
 }
+
+
 
 export class MovableGameObject extends GameObject {
 
@@ -49,14 +42,23 @@ export class MovableGameObject extends GameObject {
 }
 
 //brauchen wir eventuell fürs Spielfeld
-/*export class StrokedObject extends GameObject {
+/*export class StrokedObject extends MovableGameObject {
 
     constructor(x, y, width, height, color, lineWidth) {
-        super(x, y, width, height, color);
+        super(x, y, 0, color);
+        //für Viereck:
+        this.width = width;
+        this.height = height;
         this.lineWidth = lineWidth;
     }
 
     draw(ctx) {
+        //Viereck
+        /* ctx.beginPath();
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = this.color;
         ctx.strokeStyle = this.color;
         ctx.lineWidth = this.lineWidth;
         ctx.strokeRect(
@@ -110,39 +112,16 @@ export class Ballon extends MovableGameObject {
         }
         super.update();
     }
-    
-    /*borderCollision(ctx) {
-        let collisions =  [];
-        if(this.y < 0) { // Top border
-            this.y = 0;
-            this.vy = -this.vy;
-            collisions.push(Ball.COLLISIONS.UP);
-        } 
-        if(this.y + this.height > ctx.canvas.height) { // bottom border
-            this.y = ctx.canvas.height - this.height;
-            this.vy = -this.vy;
-            collisions.push(Ball.COLLISIONS.DOWN);
-        }
-        if(this.x < 0) { // left border
-            this.x = 0;
-            this.vx = -this.vx;
-            collisions.push(Ball.COLLISIONS.LEFT);
-        } 
-        if(this.x + this.width > ctx.canvas.width) { // right border
-            this.x = ctx.canvas.width - this.width;
-            this.vx = -this.vx;
-            collisions.push(Ball.COLLISIONS.RIGHT);
-        }
-        return collisions.length === 0 ? false : collisions;
+
+    resizePlayer(){
+        this.radius += 4;
     }
 
-    static get COLLISIONS() {
-        return {
-            LEFT: "LEFT",
-            RIGHT: "RIGHT",
-            UP: "UP",
-            DOWN: "DOWN",
-        }
-    }*/
+    collision( otherObjectX, otherObjectY, otherObjectRadius){
+        let xDif = this.x - otherObjectX,
+            yDif = this.y - otherObjectY,
+            distanceSquared = (xDif * xDif) + (yDif * yDif);
+        return (distanceSquared < (this.radius + otherObjectRadius) * (this.radius + otherObjectRadius));
+    }
 
 }

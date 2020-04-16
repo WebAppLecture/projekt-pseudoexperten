@@ -57,6 +57,7 @@ export class FlyAway{
 
     draw(ctx){
         this.createEnemies(ctx);
+        this.createCoins(ctx);
         this.player.draw(ctx);
         this.drawBoundingBox(ctx);
         this.arrayOfEnemiesOne.forEach(enemie => enemie.draw(ctx));
@@ -154,7 +155,7 @@ export class FlyAway{
         } else if (stringForActionOnCollision == "gameOver"){
             this.gameOver = true;
 
-            this.gameOverText = ["Test", "du hast verloren"];
+            this.gameOverText = ["You failed, but never give up!", "Try again! :)"];
         }
     }
 
@@ -175,23 +176,31 @@ export class FlyAway{
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         this.gameOverText.forEach((line, i) => {
-            ctx.fillText(line, ctx.canvas.width / 2, ctx.canvas.height / 2 + i * 30);
-            ctx.strokeText(line, ctx.canvas.width / 2, ctx.canvas.height / 2 + i * 30);
+            ctx.fillText(line, ctx.canvas.width / 2, ctx.canvas.height / 2 + i * 50);
+            ctx.strokeText(line, ctx.canvas.width / 2, ctx.canvas.height / 2 + i * 50);
         });
     }
 
-    /*       COINS        */
-    createCoins(ctx, arrayOfCoins) {
+    /*      COINS       */
+    createCoins(ctx){
+        if(this.checkCollisionOfCoins == true){
+            this.createNewCoin(ctx, this.arrayOfCoins, "E2B007");
+            //console.log("Test");
+        }
+    }
+
+    createNewCoin(ctx, arrayOfCoins, color){
         let radius = 10;
-        let color = "#E2B007";
-        let varsToCreateCoins = this.randomPositionCoins(radius, ctx);
+        let varsToCreateCoins = this.randomPositionCoins(ctx);
         
         arrayOfCoins.push(new MovableGameObject(varsToCreateCoins[0], varsToCreateCoins[1], radius, color));
     }
 
-
-    randomPositionCoins(radius, ctx) {
-        return[Math.random() * (ctx.canvas.width), -radius, 0, Math.random() * (1.5-1) + 1];
+    randomPositionCoins(ctx) {
+        return[Math.random() * ctx.canvas.width, Math.random() * ctx.canvas.height];
     }
 
+    checkCollisionOfCoins(){
+        
+    }
 }

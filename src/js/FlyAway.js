@@ -15,7 +15,10 @@ export class FlyAway{
         this.arrayOfEnemiesOne = [];
 
         //enemies 2: ballon grows 
-        this.arrayOfEnemiesTwo =[];
+        this.arrayOfEnemiesTwo = [];
+
+        //coins
+        this.arrayOfCoins = [];
 
     }
 
@@ -151,6 +154,10 @@ export class FlyAway{
             this.player.resizePlayer();
         } else if (stringForActionOnCollision == "gameOver"){
             this.gameOver = true;
+
+            /*let element = document.getElementById('screen');
+            let text = "Test!";
+            this.restartScreen(element, text);*/
         }
     }
 
@@ -161,7 +168,34 @@ export class FlyAway{
     collisionWithCanvas(ctx, enemie){
         return (enemie.y >= ctx.canvas.height || enemie.x >= ctx.canvas.width);
     }
-    
+
+    /* Game Over Screen funktioniert, aber nur für eine millisekunde?
+    restartScreen(element, text) {
+        if(element.getContext) {
+            let context = element.getContext('2d');
+            context.clearRect(0, 0, element.width, element.height);
+            context.fillStyle = 'black';
+            context.strokeStyle = 'black';
+            context.font = '30px Arial';
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillText(text, element.width / 2, element.height / 2);
+            context.strokeText(text, element.width / 2, element.height / 2);
+        }
+    }*/
+
+    /*       COINS        */
+    createCoins(ctx, arrayOfCoins) {
+        let radius = 10;
+        let color = "#E2B007";
+        let varsToCreateCoins = this.randomPositionCoins(radius, ctx);
+        
+        arrayOfCoins.push(new MovableGameObject(varsToCreateCoins[0], varsToCreateCoins[1], radius, color));
+    }
+
+
+    randomPositionCoins(radius, ctx) {
+        return[Math.random() * (ctx.canvas.width), -radius, 0, Math.random() * (1.5-1) + 1];
+    }
+
 }
-
-

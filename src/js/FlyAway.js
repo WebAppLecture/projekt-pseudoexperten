@@ -42,8 +42,7 @@ export class FlyAway{
 
     tick(ctx) {
         if(this.gameOver) {
-            // TODO: gameOverScreen
-            //this.gameOverScreen(ctx);
+            this.gameOverScreen(ctx);
             return;
         }
         this.checkCollisionOfEnemies(ctx);
@@ -155,9 +154,7 @@ export class FlyAway{
         } else if (stringForActionOnCollision == "gameOver"){
             this.gameOver = true;
 
-            /*let element = document.getElementById('screen');
-            let text = "Test!";
-            this.restartScreen(element, text);*/
+            this.gameOverText = ["Test", "du hast verloren"];
         }
     }
 
@@ -169,20 +166,19 @@ export class FlyAway{
         return (enemie.y >= ctx.canvas.height || enemie.x >= ctx.canvas.width);
     }
 
-    /* Game Over Screen funktioniert, aber nur für eine millisekunde?
-    restartScreen(element, text) {
-        if(element.getContext) {
-            let context = element.getContext('2d');
-            context.clearRect(0, 0, element.width, element.height);
-            context.fillStyle = 'black';
-            context.strokeStyle = 'black';
-            context.font = '30px Arial';
-            context.textAlign = 'center';
-            context.textBaseline = 'middle';
-            context.fillText(text, element.width / 2, element.height / 2);
-            context.strokeText(text, element.width / 2, element.height / 2);
-        }
-    }*/
+    /* Game Over Screen funktioniert, aber nur für eine millisekunde? */
+    gameOverScreen(ctx) {
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.fillStyle = 'black';
+        ctx.strokeStyle = 'black';
+        ctx.font = '30px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        this.gameOverText.forEach((line, i) => {
+            ctx.fillText(line, ctx.canvas.width / 2, ctx.canvas.height / 2 + i * 30);
+            ctx.strokeText(line, ctx.canvas.width / 2, ctx.canvas.height / 2 + i * 30);
+        });
+    }
 
     /*       COINS        */
     createCoins(ctx, arrayOfCoins) {

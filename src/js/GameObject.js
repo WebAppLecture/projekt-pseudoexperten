@@ -75,6 +75,7 @@ export class Ballon extends MovableGameObject {
        //hier kann die Farbe geändert werden
         super(x, y, radius, "#909090", 0, 0);
         this.deltaV = deltaV;
+        
     }
 
     up(bool) {

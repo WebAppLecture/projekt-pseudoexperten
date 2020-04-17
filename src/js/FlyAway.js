@@ -1,11 +1,9 @@
 
-import { Ballon, MovableGameObject } from "./GameObject.js";
+import { GameObject, Ballon, MovableGameObject } from "./GameObject.js";
 
 export class FlyAway{
 
     constructor(ctx){
-        this.start();
-        this.setupGameControls(ctx);
         //this.gameLoop();
 
         //enemies
@@ -19,17 +17,19 @@ export class FlyAway{
 
         //coins
         this.arrayOfCoins = [];
-
+        this.start(ctx);
+        this.setupGameControls(ctx);
     }
 
-    start(){
+    start(ctx){
         this.gameOver = false;
         this.points = 0;
         this.lives = 3;
         
         //player
-        let sizePlayer = 30;
+        let sizePlayer = 20;
         this.player = new Ballon(300, 300, sizePlayer, 8);
+        this.createCoins(ctx);
     }
 
     /*gameLoop() {  
@@ -45,9 +45,19 @@ export class FlyAway{
             this.gameOverScreen(ctx);
             return;
         }
-        this.checkCollisionOfEnemies(ctx);
+        this.checkCollision(ctx);
+        this.create(ctx);
         this.update(ctx);
         this.draw(ctx);
+    }
+
+    checkCollision(ctx){
+        this.checkCollisionOfEnemies(ctx);
+        this.checkCollisionOfCoins();
+    }
+
+    create(ctx){
+        this.createEnemies(ctx);
     }
 
     update(ctx){
@@ -56,12 +66,11 @@ export class FlyAway{
     }
 
     draw(ctx){
-        this.createEnemies(ctx);
-        this.createCoins(ctx);
         this.player.draw(ctx);
         this.drawBoundingBox(ctx);
         this.arrayOfEnemiesOne.forEach(enemie => enemie.draw(ctx));
         this.arrayOfEnemiesTwo.forEach(enemie => enemie.draw(ctx));
+        this.arrayOfCoins.forEach(coin => coin.draw(ctx));
     }
 
     drawBoundingBox(ctx) {
@@ -183,17 +192,16 @@ export class FlyAway{
 
     /*      COINS       */
     createCoins(ctx){
-        if(this.checkCollisionOfCoins == true){
-            this.createNewCoin(ctx, this.arrayOfCoins, "E2B007");
+        for(let i = 9; i--; ){
+            this.createNewCoin(ctx, this.arrayOfCoins, "#FFFF00");
             //console.log("Test");
         }
     }
 
     createNewCoin(ctx, arrayOfCoins, color){
-        let radius = 10;
+        let radius = 6;
         let varsToCreateCoins = this.randomPositionCoins(ctx);
-        
-        arrayOfCoins.push(new MovableGameObject(varsToCreateCoins[0], varsToCreateCoins[1], radius, color));
+        arrayOfCoins.push(new GameObject(varsToCreateCoins[0], varsToCreateCoins[1], radius, color));
     }
 
     randomPositionCoins(ctx) {
@@ -201,6 +209,10 @@ export class FlyAway{
     }
 
     checkCollisionOfCoins(){
-        
+        for(let i = this.arrayOfCoins.length; i--; ){     
+            if(this.player.collision(this.arrayOfCoins[i].x, this.arrayOfCoins[i].y, this.arrayOfCoins[i].radius)){
+                this.arrayOfCoins.splice(i, 1);
+            }
+        }
     }
 }

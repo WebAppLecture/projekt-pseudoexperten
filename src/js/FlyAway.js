@@ -17,6 +17,7 @@ export class FlyAway{
 
         //coins
         this.arrayOfCoins = [];
+        this.countCoins = 0;
         this.start(ctx);
         this.setupGameControls(ctx);
     }
@@ -43,6 +44,10 @@ export class FlyAway{
     tick(ctx) {
         if(this.gameOver) {
             this.gameOverScreen(ctx);
+            return;
+        }
+        if(this.countCoins == 10){
+            this.gameWinningScreen(ctx);
             return;
         }
         this.checkCollision(ctx);
@@ -192,9 +197,8 @@ export class FlyAway{
 
     /*      COINS       */
     createCoins(ctx){
-        for(let i = 9; i--; ){
+        for(let i = 10; i--; ){
             this.createNewCoin(ctx, this.arrayOfCoins, "#FFFF00");
-            //console.log("Test");
         }
     }
 
@@ -212,7 +216,25 @@ export class FlyAway{
         for(let i = this.arrayOfCoins.length; i--; ){     
             if(this.player.collision(this.arrayOfCoins[i].x, this.arrayOfCoins[i].y, this.arrayOfCoins[i].radius)){
                 this.arrayOfCoins.splice(i, 1);
+                this.countCoins += 1;
+                if(this.countCoins == 10){
+                    /*console.log("Funktioniert")*/
+                    this.gameWinningText = ["You did it.", "Congratulations!"];
+                }
             }
         }
+    }
+
+    gameWinningScreen(ctx) {
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.fillStyle = 'black';
+        ctx.strokeStyle = 'black';
+        ctx.font = '30px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        this.gameWinningText.forEach((line, i) => {
+            ctx.fillText(line, ctx.canvas.width / 2, ctx.canvas.height / 2 + i * 50);
+            ctx.strokeText(line, ctx.canvas.width / 2, ctx.canvas.height / 2 + i * 50);
+        });
     }
 }

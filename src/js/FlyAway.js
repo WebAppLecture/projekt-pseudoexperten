@@ -4,8 +4,6 @@ import { GameObject, Ballon, MovableGameObject } from "./GameObject.js";
 export class FlyAway{
 
     constructor(ctx){
-        //this.gameLoop();
-
         //enemies
         this.ticksToNextStone = 400;
 
@@ -32,14 +30,6 @@ export class FlyAway{
         this.player = new Ballon(300, 300, sizePlayer, 8);
         this.createCoins(ctx);
     }
-
-    /*gameLoop() {  
-        if(this.game !== undefined) {
-            requestAnimationFrame(this.gameLoop.bind(this));  
-            this.renderContext.clearRect(0,0,this.screen.width, this.screen.height);
-            this.game.tick(this.renderContext);
-        }
-    }*/
 
     tick(ctx) {
         if(this.gameOver) {
@@ -209,7 +199,7 @@ export class FlyAway{
     }
 
     randomPositionCoins(ctx) {
-        return[Math.random() * ctx.canvas.width, Math.random() * ctx.canvas.height];
+        return[Math.random() * (ctx.canvas.width-50) + 40, Math.random() * (ctx.canvas.height-50) + 40];
     }
 
     checkCollisionOfCoins(){

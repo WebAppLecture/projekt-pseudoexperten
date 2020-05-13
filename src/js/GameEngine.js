@@ -10,6 +10,8 @@ export class GameEngine{
         this.setupCanvas();
         this.seputControlListener();
         this.showStartScreen();
+
+        this.gameLoop();
     }
 
     showStartScreen(){
@@ -20,12 +22,11 @@ export class GameEngine{
 
     startGame(){
         this.game = new FlyAway(this.renderContext);
-        this.gameLoop();
     }
     
     gameLoop() {
-        if(this.game !== undefined) {
-            requestAnimationFrame(this.gameLoop.bind(this));  
+        requestAnimationFrame(this.gameLoop.bind(this));  
+        if(this.game !== undefined) {   
             this.renderContext.clearRect(0,0,this.screen.width, this.screen.height);
             this.game.tick(this.renderContext);
         }
